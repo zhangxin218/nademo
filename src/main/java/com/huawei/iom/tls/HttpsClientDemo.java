@@ -28,7 +28,7 @@ import org.apache.http.util.EntityUtils;
 
 /**
  * 使用apcehe 的httpclient发送https消息的对接示例代码
- * 
+ *
  * */
 public class HttpsClientDemo extends DefaultHttpClient {
     // 示例代码 证书路径、证书密钥请根据实际情况替换
@@ -152,6 +152,7 @@ public class HttpsClientDemo extends DefaultHttpClient {
         String result2 = httpClient2.doPost(url2, paramap, "UTF-8");
         System.out.println("----------result2----------");
         System.out.println(result2);
+        System.out.println("");
     }
 
 }
