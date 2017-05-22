@@ -1,0 +1,56 @@
+<form class="form-horizontal">
+	<button class="btn btn-primary" ng-click="gotoSearch()">go to search</button>
+	<div class="small-title">Registering a Directly-Connected Device</div>
+		<label class="control-label" for="nodeId">nodeId：</label>
+		<input type="text" id="nodeId" ng-model="nodeId">
+		<label class="control-label" for="verifyCode">verifyCode：</label>
+		<input type="text" id="verifyCode" ng-model="verifyCode">
+		<button class="btn btn-primary" ng-click="regDevice()">Bind</button>
+	<div class="split-line"></div>
+	<div class="small-title">Discovering a Non-Directly-Connected Device</div>
+		<label class="control-label" for="findDeviceId">Device Id：</label>
+		<input type="text" id="findDeviceId" ng-model="findDeviceId">
+		<label class="control-label" for="findDeviceId">Protocol Type：</label>
+		<!-- <input type="text" id="protocolType" ng-model="protocolType"> -->
+		<select id="protocolType" ng-model="protocolType" style="width: 135px; height: 25px;">
+			<option value="Z-Wave">Z-Wave</option>
+			<option value="ONVIF">ONVIF</option>
+			<option value="WPS">WPS</option>
+			<option value="ZigBee">ZigBee</option>
+		</select>
+		<button class="btn btn-primary" ng-click="findDevice()">Query</button>
+	<div class="split-line"></div>
+	<div class="small-title">Querying the Activation Status of a Device</div>
+		<label class="control-label" for="deviceId">Device Id：</label>
+		<input type="text" id="deviceId" ng-model="deviceId">
+		<button class="btn btn-primary" ng-click="queryDeviceStatus()">Query</button>
+	<div class="split-line"></div>
+	<div class="small-title">Deleting a Device</div>
+		<label class="control-label" for="delDeviceId">Device Id：</label>
+		<input type="text" id="delDeviceId" ng-model="delDeviceId">
+		<button class="btn btn-primary" ng-click="delDevice()">Delete</button>
+	<div class="split-line"></div>
+	<div class="small-title">Modifying a Device</div>
+		<label class="control-label" for="renameDeviceId">Device Id：</label>
+		<input type="text" id="renameDeviceId" ng-model="renameDeviceId">
+		<label class="control-label" for="deviceName">Device Name：</label>
+		<input type="text" id="deviceName" ng-model="deviceName">
+		<label class="control-label" for="endUser">End User：</label>
+		<input type="text" id="endUser" ng-model="endUser">
+		<button class="btn btn-primary" ng-click="renameDevice()">Modify</button>
+	<div class="split-line"></div>
+	<div class="small-title">Using Device Services</div>
+		<label class="control-label" for="sendDeviceId">Device Id：</label>
+		<input type="text" id="sendDeviceId" ng-model="sendDeviceId">
+		<label class="control-label" for="sendServiceId">Service Id：</label>
+		<input type="text" id="sendServiceId" ng-model="sendServiceId">
+		<label class="control-label" for="sendCommandName">Command Name：</label>
+		<input type="text" id="sendCommandName" ng-model="sendCommandName">
+		<button class="btn btn-primary" ng-click="sendCommndToDevice()">Send</button><br/>
+		<label class="control-label" for="sendCommandPara">Command Parameter(JsonString)：</label><br/>
+		<textarea rows="5" cols="120" style='resize: none;' id="sendCommandPara" ng-model="sendCommandPara"></textarea>
+	<div class="split-line"></div>
+	<div class="small-title">Service Log</div>
+<!-- 	<div style="width: 1200px; height: 500px; border: 1px solid #666666;" id="message"></div> -->
+	<textarea rows="20" cols="160" style='resize: none;' id="message" ng-model="message"></textarea>
+</form>

@@ -1,0 +1,7 @@
+<div id="{{t.id}}" ng-mouseover="mouseoverEvent(t.id,t.autoClose)" ng-mouseleave="mouseleaveEvent(t.id,t.autoClose)" ng-class="{'fade':removeMap[t.id]}" ng-show="isAuthenticated()" ng-repeat="t in TipArray">
+	<div class="row temporary-tips-sub" ng-mouseover="mouseoverEvent(t.id)" ng-mouseleave="mouseleaveEvent(t.id)">
+    	<div class="temporary-tips-sub-background" ng-class="{'alarm':t.type=='alarm','success':t.type=='success'}"></div>
+    	<div class="temporary-tips-sub-context"><img ng-src="{{t.src}}"><span ng-bind="t.content"></span></div>
+    	<div class="temporary-tips-sub-close" ng-click="closeTip(t.id)"></div>
+    </div>
+</div>

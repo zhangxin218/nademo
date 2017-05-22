@@ -1,0 +1,204 @@
+<div class="row searchBody" style="padding:0px 25px 20px 25px">
+	<ul id="myTab" class="nav nav-tabs">
+		<li  class="active">
+			<a data-toggle="tab" ng-click="changeSearchType('getDevices')"><label>Querying the Device Information List </label></a>
+		</li>
+		<li>
+			<a data-toggle="tab" ng-click="changeSearchType('getHistory')"><label>Querying Historical Device Data</label></a>
+		</li>
+		<li>
+			<a data-toggle="tab" ng-click="changeSearchType('getDevice')"><label>Query Information About a Single Device</label></a>
+		</li>
+		<li>
+			<a data-toggle="tab" ng-click="changeSearchType('getDeviceService')"><label>Querying Capabilities of a Device</label></a>
+		</li>
+	</ul>
+</div>
+<div>
+	<div class="row search-body">
+		<div class="col-xs-12 form-group row formDiv">
+			<div class="col-xs-3 row"   ng-if="taskType == 'getDevices'|| taskType == 'getDevice' ">
+				<div class="col-xs-5">
+					<label class="control-label pull-right filed_lineheight">App ID</label>
+				</div>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm assets-field-bcolor" ng-model="formSearchData.appId">
+				</div>
+			</div>
+			<div class="col-xs-3 row"  ng-if="taskType == 'getDevices'|| taskType == 'getHistory'|| taskType == 'getDeviceService'">
+				<div class="col-xs-5">
+					<label class="control-label pull-right filed_lineheight">Gateway ID</label>
+					<span style="color:red;font-size:20px" ng-if="taskType == 'getHistory'">*</span>
+				</div>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm assets-field-bcolor" ng-model="formSearchData.gatewayId">
+				</div>
+			</div>
+			<div class="col-xs-3 row"  ng-if="taskType == 'getHistory'">
+				<div class="col-xs-5">
+					<label class="control-label pull-right filed_lineheight">Service ID</label>
+				</div>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm assets-field-bcolor" ng-model="formSearchData.serviceId">
+				</div>
+			</div>
+			<div class="col-xs-3 row"  ng-if="taskType == 'getDevices'">
+				<div class="col-xs-5">
+					<label class="control-label pull-right filed_lineheight" translate=>Status</label>
+				</div>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm assets-field-bcolor" ng-model="formSearchData.status">
+				</div>
+			</div>
+			<div class="col-xs-3 row"  ng-if="taskType == 'getDevices'">
+				<div class="col-xs-5">
+					<label class="control-label pull-right filed_lineheight">Node Type</label>
+				</div>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm assets-field-bcolor" ng-model="formSearchData.nodeType">
+				</div>
+			</div>
+			<div class="col-xs-3 row" ng-if="taskType == 'getDeviceService'">
+				<span style="font-size: 10px">(Device ID and Gateway ID cannot be both left empty.)</span>
+			</div>
+		</div>
+		<div class="col-xs-12 form-group row" style="margin-bottom:5px;">
+			<div class="col-xs-3 row" ng-if="taskType != 'getDevices'">
+				<div class="col-xs-5">
+					<label class="control-label pull-right filed_lineheight" translate=>Device ID</label>
+					<span style="color:red;font-size:20px" ng-if="taskType == 'getDevice' || taskType == 'getHistory'">*</span>
+				</div>
+				<div class="col-xs-7">
+					<input type="text" class="form-control input-sm assets-field-bcolor" ng-model="formSearchData.deviceId">
+				</div>
+			</div>	
+			<div class="col-xs-3 row" ng-if="taskType == 'getDevices'|| taskType == 'getHistory'">
+				<div class="col-xs-5">
+					<label class="control-label pull-right filed_lineheight">StartTime</label>
+				</div>
+				<div class="col-xs-7">
+					<input type="date" class="form-control input-sm assets-field-bcolor" ng-model="formSearchData.startTime"/>
+				</div>
+			</div>
+			<div class="col-xs-3 row" ng-if="taskType == 'getDevices'|| taskType == 'getHistory'">
+				<div class="col-xs-5">
+					<label class="control-label pull-right filed_lineheight">EndTime</label>
+				</div>
+				<div class="col-xs-7">
+					<input type="date" class="form-control input-sm assets-field-bcolor" ng-model="formSearchData.endTime"/>
+				</div>
+			</div>
+			<div class="col-xs-3 row">
+				<div class="col-xs-6">
+					<button ng-click="searchSubmit()" class="btn btn-primary"><span>Query</span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row" style="padding-top: 20px" ng-show="taskType == 'getDevices'">
+	<div class="col-xs-12">
+		<div id="deviceTable" class="table-responsive" style="margin: 0;padding: 0;max-height:530px;">
+			<table ng-table="deviceTableParams" class="table table-hover">
+				<thead class="ng-scope">
+				<tr class="ng-scope">
+					<th>&nbsp;</th>
+					<th class="rowTd"><span>Device ID</span></th>
+					<th class="rowTd"><span>Gateway ID</span></th>
+					<th class="rowTd"><span>Node Type</span></th>
+					<th class="rowTd"><span>Create Time</span></th>
+					<th class="rowTd"><span>Last Modified Time</span></th>
+					<th class="rowTd"><span>DeviceInfo</span></th>
+					<th class="rowTd"><span>Services</span></th>
+					<th>&nbsp;</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="device in devices | orderBy:'operationTime':true">
+					<td>&nbsp;</td>
+					<td class="rowTd" style="text-align:left" ><span title="{{device.deviceId}}" ng-bind="device.deviceId "></span></td>
+					<td class="rowTd" style="text-align:left" ><span title="{{device.gatewayId}}" ng-bind="device.gatewayId "></span></td>
+					<td class="rowTd" style="text-align:left" ><span title="{{device.nodeType}}" ng-bind="device.nodeType"></span></td>
+					<td class="rowTd" style="text-align:left" ><span title="{{device.createTime}}" ng-bind="device.createTime | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+					<td class="rowTd" style="text-align:left" ><span title="{{device.lastModifiedTime}}" ng-bind="device.lastModifiedTime | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+					<td class="rowTd" style="text-align:left" ><a ng-click="getDetail(device.deviceInfo)" style="cursor:pointer"><span title="{{device.deviceInfo}}" ng-bind="objToStringDetail(device.deviceInfo) | characters:30"></span></a></td>
+					<td class="rowTd" style="text-align:left" ><a ng-click="getDetail(device.services)" style="cursor:pointer"><span title="{{device.services}}" ng-bind="objToStringDetail(device.services)| characters:30"></span></a></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr ng-show="devices.length == 0">
+					<td>&nbsp;</td>
+					<td colspan="7" align="center" style="border-bottom: 0px"><span>No Data</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="row" style="padding-top: 20px" ng-show="taskType == 'getHistory'">
+	<div class="col-xs-12">
+		<div id="historyTable" class="table-responsive" style="margin: 0;padding: 0;max-height:530px;">
+			<table ng-table="tableParams" class="table table-hover">
+				<thead class="ng-scope">
+				<tr class="ng-scope">
+					<th>&nbsp;</th>
+					<th class="rowTd"><span>Device ID</span></th>
+					<th class="rowTd"><span>Gateway ID</span></th>
+					<th class="rowTd"><span>App ID</span></th>
+					<th class="rowTd"><span>Service ID</span></th>
+					<th class="rowTd"><span>Data</span></th>
+					<th class="rowTd"><span>Time</span></th>
+					<th>&nbsp;</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="device in historys | orderBy:'operationTime':true">
+					<td>&nbsp;</td>
+					<td class="rowTd" style="text-align:left"><span title="{{device.deviceId}}" ng-bind="device.deviceId "></span></td>
+					<td class="rowTd" style="text-align:left"><span title="{{device.gatewayId}}" ng-bind="device.gatewayId "></span></td>
+					<td class="rowTd" style="text-align:left"><span title="{{device.appId}}" ng-bind="device.appId"></span></td>
+					<td class="rowTd" style="text-align:left"><span title="{{device.seviceId}}" ng-bind="device.seviceId "></span></td>
+					<td class="rowTd" style="text-align:left"><a ng-click="getDetail(device.data)" style="cursor:pointer"><span title="{{device.data}}" ng-bind="device.data | characters:30"></span></a></td>
+					<td class="rowTd" style="text-align:left"><span title="{{log.operationTime}}" ng-bind="log.operationTime | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr ng-show="historys.length == 0">
+					<td>&nbsp;</td>
+					<td colspan="7" align="center" style="border-bottom: 0px"><span>No Data</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="col-xs-12" style="padding-top: 30px" ng-hide=" taskType == 'getHistory' || taskType == 'getDevices'">
+	<label for="" style="font-size: 20px;font-weight:bold">Response</label>
+	<textarea class="col-xs-12" id="" cols="30" rows="30" ng-model="resultDetail"></textarea>
+</div>
+
+<!-- format config -->
+<div class="modal" id="formatDataModal"  role="dialog" data-backdrop="static" aria-hidden="true">
+	<div class="modal-dialog dialog_complex" draggable>
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+						ng-click="closeCfgModal()"></button>
+				<h4 class="modal-title">Detail</h4>
+			</div>
+			<div class="modal-body col-xs-12">
+            	<textarea class="asset-text col-xs-12"  cols="20" rows="20" ng-model="detailData">
+            	</textarea>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-operate btn-green" data-dismiss="modal" ng-click="closeCfgModal()">
+					<span>Close</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,58 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>IoM platform</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css assets/styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
+        <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" />
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="bower_components/angular-dialog-service/dist/dialogs.min.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css assets/styles/main.css -->
+        <link rel="stylesheet" href="assets/styles/components.css">
+        <link rel="stylesheet" href="assets/styles/layout.css">
+        <link rel="stylesheet" href="assets/styles/default.css">
+        <link rel="stylesheet" href="assets/styles/footer.css">
+        <link rel="stylesheet" href="assets/styles/main.css">
+        <link rel="stylesheet" href="assets/styles/navbar.css">
+        <link rel="stylesheet" href="assets/styles/header.css">
+        <link rel="stylesheet" href="assets/styles/login.css">
+        <link rel="stylesheet" href="assets/styles/user.css">
+        <link rel="stylesheet" href="assets/styles/home.css">
+        <link rel="stylesheet" href="assets/styles/report.css">
+        <link rel="stylesheet" href="assets/styles/config.css">
+        <!-- endbuild -->
+    </head>
+    <body style="background: #fff;">
+        <!--[if lt IE 10]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+         <!-- <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div> -->
+        <div>
+			<div class="row" style="padding-top: 100px;>
+				<div class="col-sm-offset-4 col-sm-4"><center><img src="assets/images/error.png"></center></div>
+				<div class="col-sm-offset-4 col-sm-4"><center><h2>This page cannot open.</h2></center></div>
+				<div class="col-sm-offset-4 col-sm-4"><center><a href="/#/home">Back to homepage</a></center></div>
+			</div>
+        </div>
+        
+        <div ui-view="footer"></div>
+        
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+</body>
+</html>
