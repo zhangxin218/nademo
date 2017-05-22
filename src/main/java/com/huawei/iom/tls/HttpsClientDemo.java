@@ -152,7 +152,8 @@ public class HttpsClientDemo extends DefaultHttpClient {
         String result2 = httpClient2.doPost(url2, paramap, "UTF-8");
         System.out.println("----------result2----------");
         System.out.println(result2);
-        System.out.println("");
+        System.out.println("1");
+        System.out.println("2");
         System.out.println("3");
     }
 
