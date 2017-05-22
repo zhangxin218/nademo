@@ -153,6 +153,7 @@ public class HttpsClientDemo extends DefaultHttpClient {
         System.out.println("----------result2----------");
         System.out.println(result2);
         System.out.println("");
+        System.out.println("3");
     }
 
 }
